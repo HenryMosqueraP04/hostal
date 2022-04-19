@@ -1,0 +1,1 @@
+SELECT COUNT(1) FROM tipo_pago WHERE id = :id
