@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public class ServicioActualizarReserva {
 
@@ -72,10 +73,10 @@ public class ServicioActualizarReserva {
 
             DayOfWeek dia = fechaInicio.getDayOfWeek();
 
-            boolean existe = dias.stream().filter(d -> d.getNombre().equalsIgnoreCase(dia.name())).findFirst().isPresent();
+            Optional<DtoDia> optionalDtoDia = dias.stream().filter(d -> d.getNombre().equalsIgnoreCase(dia.name())).findFirst();
 
-            if (existe) {
-                DtoDia dtoDia = dias.stream().filter(d -> d.getNombre().equalsIgnoreCase(dia.name())).findFirst().get();
+            if (optionalDtoDia.isPresent()) {
+                DtoDia dtoDia = optionalDtoDia.get();
                 BigDecimal valorCalculadoPorHorasDelDia = reserva.getValor().add(dtoDia.getValorPorHora());
                 reserva.establecerValorReserva(valorCalculadoPorHorasDelDia);
             }
