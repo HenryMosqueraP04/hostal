@@ -14,9 +14,9 @@ pipeline{
         //gitLabConnection('GitCeiba')
     }
 
-    /*environment {
+    environment {
         PROJECT_PATH_BACK = 'reservas'
-    }*/
+    }
 
 
     tools {
@@ -38,10 +38,10 @@ pipeline{
                 echo '------------>Checkout desde Git Microservicio<------------'
                 checkout scm
                 
-                /*dir("${PROJECT_PATH_BACK}"){
+                dir("${PROJECT_PATH_BACK}"){
                     sh 'chmod +x ./gradlew'
                     sh './gradlew clean'
-                }*/
+                }
             }
         }
 
@@ -50,7 +50,7 @@ pipeline{
             steps{
                 echo "------------>compile & Unit Tests<------------"
                 sh 'chmod +x gradlew'
-                sh './gradlew --b microservicio/build.gradle test'
+                sh './gradlew --b ./build.gradle test'
             }
             
         }
