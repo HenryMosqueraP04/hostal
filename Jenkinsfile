@@ -15,7 +15,7 @@ pipeline{
     }
 
     environment {
-        PROJECT_PATH_BACK = 'java-arquitectura-hexagonal'
+        PROJECT_PATH_BACK = 'microservicio'
     }
 
 
@@ -39,8 +39,8 @@ pipeline{
                 checkout scm
                 
                 dir("${PROJECT_PATH_BACK}"){
-                    sh 'chmod +x gradlew'
-                    sh 'gradlew clean'
+                    sh 'chmod +x ./gradlew'
+                    sh './gradlew clean'
                 }
             }
         }
