@@ -21,8 +21,8 @@ import java.util.Optional;
 
 public class ServicioCrearReserva {
 
-    private final int INCREMENTO_HORAS_RESERVA = 1;
-    private final int FACTOR_DIVISION_PORCENTAJE = 100;
+    private static final int INCREMENTO_HORAS_RESERVA = 1;
+    private static final int FACTOR_DIVISION_PORCENTAJE = 100;
 
     private final RepositorioReserva repositorioReserva;
     private final ServicioListarUsuario servicioListarUsuario;
@@ -65,8 +65,7 @@ public class ServicioCrearReserva {
             DayOfWeek dia = fechaInicio.getDayOfWeek();
 
             Optional<DtoDia> optionalDtoDia = dias.stream().filter(d -> d.getNombre().equalsIgnoreCase(dia.name())).findFirst();
-            boolean existeDia = optionalDtoDia.isPresent();
-            if (existeDia) {
+            if (!optionalDtoDia.isEmpty()) {
                 DtoDia dtoDia = optionalDtoDia.get();
                 BigDecimal valorCalculadoPorHorasDelDia = reserva.getValor().add(dtoDia.getValorPorHora());
                 reserva.establecerValorReserva(valorCalculadoPorHorasDelDia);
