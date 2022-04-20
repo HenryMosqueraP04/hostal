@@ -29,7 +29,9 @@ public class TipoPago {
     }
 
     private void validarPorcentajeImpuesto(double porcentajeImpuesto, String mensaje){
-        if(porcentajeImpuesto > MAXIMO_IMPUESTO ) throw new ExcepcionValorInvalido(mensaje);
+        if(porcentajeImpuesto > MAXIMO_IMPUESTO ){
+            throw new ExcepcionValorInvalido(mensaje);
+        }
     }
 
 }
