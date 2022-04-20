@@ -46,7 +46,7 @@ pipeline{
 
 				sonarqubeMasQualityGatesP(
                     sonarKey:'co.com.ceiba.adn:hostal.henry.mosquera',
-                    sonarName:'CeibaADN-Hostal(henry.mosquera)',
+                    sonarName:'''"CeibaADN-Hostal(henry.mosquera)"''',
                     sonarPathProperties:'./sonar-project.properties'
                 )
 			}
