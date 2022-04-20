@@ -2,11 +2,8 @@ package com.ceiba.reserva.testdatabuilder;
 
 
 import com.ceiba.reserva.comando.ComandoReserva;
-import com.ceiba.reserva.modelo.entidad.Reserva;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class ComandoReservaTestDataBuilder {
 

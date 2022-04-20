@@ -1,11 +1,8 @@
 package com.ceiba.habitacion.modelo.entidad;
 
-import com.ceiba.dominio.ValidadorArgumento;
 import lombok.Getter;
-import lombok.ToString;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
-import static com.ceiba.dominio.ValidadorArgumento.validarLongitud;
 
 @Getter
 public class Habitacion {

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ServicioListarTipoPago {
 
-    private final String TIPO_PAGO_NO_ENCONTRADO = "El registro del tipo de pago no fue encontrado";
+    private static final String TIPO_PAGO_NO_ENCONTRADO = "El registro del tipo de pago no fue encontrado";
 
     private final DaoTipoPago daoTipoPago;
     private final RepositorioTipoPago repositorioTipoPago;

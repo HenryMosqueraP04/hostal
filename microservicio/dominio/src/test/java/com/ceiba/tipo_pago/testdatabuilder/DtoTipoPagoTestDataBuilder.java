@@ -1,7 +1,6 @@
 package com.ceiba.tipo_pago.testdatabuilder;
 
 import com.ceiba.tipo_pago.modelo.dto.DtoTipoPago;
-import com.ceiba.tipo_pago.modelo.entidad.TipoPago;
 
 public class DtoTipoPagoTestDataBuilder {
 

@@ -1,6 +1,5 @@
 package com.ceiba.dia.servicio;
 
-import com.ceiba.BasePrueba;
 import com.ceiba.dia.modelo.dto.DtoDia;
 import com.ceiba.dia.puerto.dao.DaoDia;
 import com.ceiba.dia.testdatabuilder.DtoDiaTestDataBuilder;

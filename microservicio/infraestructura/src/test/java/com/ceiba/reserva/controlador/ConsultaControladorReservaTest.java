@@ -1,7 +1,6 @@
 package com.ceiba.reserva.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.usuario.controlador.ConsultaControladorUsuario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

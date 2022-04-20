@@ -1,7 +1,6 @@
 package com.ceiba.usuario.testdatabuilder;
 
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 
 public class DtoUsuarioTestDataBuilder {
 

@@ -1,9 +1,6 @@
 package com.ceiba.tipo_pago.testdatabuilder;
 
-import com.ceiba.tipo_habitacion.modelo.entidad.TipoHabitacion;
 import com.ceiba.tipo_pago.modelo.entidad.TipoPago;
-
-import java.math.BigDecimal;
 
 public class TipoPagoTestDataBuilder {
 

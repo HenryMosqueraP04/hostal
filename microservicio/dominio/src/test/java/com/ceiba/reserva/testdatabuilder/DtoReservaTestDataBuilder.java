@@ -1,7 +1,6 @@
 package com.ceiba.reserva.testdatabuilder;
 
 import com.ceiba.reserva.modelo.dto.DtoReserva;
-import com.ceiba.reserva.modelo.entidad.Reserva;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -4,16 +4,12 @@ package com.ceiba.tipo_pago.modelo.entidad;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-import com.ceiba.tipo_habitacion.modelo.entidad.TipoHabitacion;
-import com.ceiba.tipo_habitacion.testdatabuilder.TipoHabitacionTestDataBuilder;
 import com.ceiba.tipo_pago.testdatabuilder.TipoPagoTestDataBuilder;
 import org.junit.jupiter.api.Test;
 
 
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TipoPagoTest {
 

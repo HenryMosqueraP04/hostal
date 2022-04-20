@@ -7,7 +7,7 @@ import com.ceiba.tipo_habitacion.puerto.repositorio.RepositorioTipoHabitacion;
 
 public class ServicioListarTipoHabitacion {
 
-    private final String TIPO_HABITACION_NO_ENCONTRADA = "El registro del tipo de habitación no fue encontrado";
+    private static final String TIPO_HABITACION_NO_ENCONTRADA = "El registro del tipo de habitación no fue encontrado";
 
     private final DaoTipoHabitacion daoTipoHabitacion;
     private final RepositorioTipoHabitacion repositorioTipoHabitacion;

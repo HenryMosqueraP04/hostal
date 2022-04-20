@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ServicioListarHabitacion {
 
-    private final String HABITACION_NO_ENCONTRADA = "El registro de la habitación no fue encontrado";
-    private final String HABITACION_OCUPADA = "La habitación se encuentra ocupada";
+    private static final String HABITACION_NO_ENCONTRADA = "El registro de la habitación no fue encontrado";
+    private static final String HABITACION_OCUPADA = "La habitación se encuentra ocupada";
 
     private final DaoHabitacion daoHabitacion;
     private final RepositorioHabitacion repositorioHabitacion;

@@ -1,7 +1,6 @@
 package com.ceiba.tipo_habitacion.testdatabuilder;
 
 import com.ceiba.tipo_habitacion.modelo.dto.DtoTipoHabitacion;
-import com.ceiba.tipo_habitacion.modelo.entidad.TipoHabitacion;
 
 import java.math.BigDecimal;
 

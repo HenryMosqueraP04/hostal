@@ -6,9 +6,6 @@ import com.ceiba.usuario.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.Test;
 
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UsuarioTest {

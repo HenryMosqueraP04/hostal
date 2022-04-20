@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ServicioListarUsuario {
 
-    private final String USUARIO_NO_ENCONTRADO = "El registro del usuario no fue encontrado";
+    private static final String USUARIO_NO_ENCONTRADO = "El registro del usuario no fue encontrado";
 
     private final DaoUsuario daoUsuario;
     private final RepositorioUsuario repositorioUsuario;

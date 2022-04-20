@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ServicioListarReserva {
 
-    private final String RESERVA_NO_ENCONTRADA = "El registro de la reserva no fue encontrado";
+    private static final String RESERVA_NO_ENCONTRADA = "El registro de la reserva no fue encontrado";
 
     private final DaoReserva daoReserva;
     private final RepositorioReserva repositorioReserva;

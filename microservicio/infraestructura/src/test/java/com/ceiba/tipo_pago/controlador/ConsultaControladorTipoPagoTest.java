@@ -1,8 +1,6 @@
 package com.ceiba.tipo_pago.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.habitacion.controlador.ConsultaControladorHabitacion;
-import com.ceiba.tipo_pago.controlador.ConsultaControladorTipoPago;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

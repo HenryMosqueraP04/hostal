@@ -4,17 +4,13 @@ package com.ceiba.tipo_habitacion.modelo.entidad;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-import com.ceiba.reserva.modelo.entidad.Reserva;
-import com.ceiba.reserva.testdatabuilder.ReservaTestDataBuilder;
 import com.ceiba.tipo_habitacion.testdatabuilder.TipoHabitacionTestDataBuilder;
 import org.junit.jupiter.api.Test;
 
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TipoHabitacionTest {
 

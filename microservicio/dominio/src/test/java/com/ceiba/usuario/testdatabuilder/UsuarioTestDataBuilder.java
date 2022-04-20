@@ -1,6 +1,5 @@
 package com.ceiba.usuario.testdatabuilder;
 
-import com.ceiba.tipo_pago.modelo.entidad.TipoPago;
 import com.ceiba.usuario.modelo.entidad.Usuario;
 
 public class UsuarioTestDataBuilder {
