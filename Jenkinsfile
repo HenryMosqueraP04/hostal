@@ -20,7 +20,7 @@ pipeline{
 
 
     tools {
-        jdk 'JDK11_Centos'
+        jdk 'JDK8_Centos'
     }
 
     // Parametros disponibles en jenkins
