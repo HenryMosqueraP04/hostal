@@ -30,7 +30,9 @@ public class ServicioListarReserva {
 
     private void validarExistenciaPorId(Long id){
         boolean existe = this.repositorioReserva.existePorId(id);
-        if(!existe) throw new ExcepcionSinDatos(RESERVA_NO_ENCONTRADA);
+        if(!existe){
+            throw new ExcepcionSinDatos(RESERVA_NO_ENCONTRADA);
+        }
     }
 
 

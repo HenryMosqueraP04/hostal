@@ -30,7 +30,9 @@ public class ServicioListarUsuario {
 
     public void validarExistenciaUsuarioPorId(Long id){
         boolean existe = this.repositorioUsuario.existePorId(id);
-        if(!existe) throw new ExcepcionSinDatos(USUARIO_NO_ENCONTRADO);
+        if(!existe){
+            throw new ExcepcionSinDatos(USUARIO_NO_ENCONTRADO);
+        }
     }
 
 }

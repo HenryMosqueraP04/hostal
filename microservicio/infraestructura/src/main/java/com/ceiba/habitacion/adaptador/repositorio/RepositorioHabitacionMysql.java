@@ -15,7 +15,7 @@ public class RepositorioHabitacionMysql implements RepositorioHabitacion {
     private static String sqlExistePorId;
 
     @SqlStatement(namespace = "habitacion", value = "esHabitacionOcupadaPorId")
-    private static String SqlEsHabitacionOcupadaPorId;
+    private static String sqlEsHabitacionOcupadaPorId;
 
     public RepositorioHabitacionMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -32,6 +32,6 @@ public class RepositorioHabitacionMysql implements RepositorioHabitacion {
     public boolean esHabitacionOcupadaPorId(Long id) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id",id);
-        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(SqlEsHabitacionOcupadaPorId,mapSqlParameterSource, Boolean.class );
+        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEsHabitacionOcupadaPorId,mapSqlParameterSource, Boolean.class );
     }
 }

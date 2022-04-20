@@ -50,7 +50,7 @@ public class Reserva {
         fechaFin = this.normalizarFecha(fechaFin);
 
         this.validarFechaInicialMayorQueActual(fechaActual, fechaInicio,MENSAJE_FECHA_INICIO_MAYOR_QUE_FECHA_ACTUAL);
-        this.validarReservaPorHoraMinima(fechaInicio, fechaFin, HORA_MINIMA, String.format(MENSAJE_HORA_MINIMA, String.valueOf(HORA_MINIMA)));
+        this.validarReservaPorHoraMinima(fechaInicio, fechaFin, String.format(MENSAJE_HORA_MINIMA, String.valueOf(HORA_MINIMA)));
 
         this.id = id;
         this.usuarioId = usuarioId;
@@ -68,13 +68,17 @@ public class Reserva {
         this.valor = valor;
     }
 
-    private void validarReservaPorHoraMinima(LocalDateTime fechaInicial, LocalDateTime fechaFinal, int hora, String mensaje){
+    private void validarReservaPorHoraMinima(LocalDateTime fechaInicial, LocalDateTime fechaFinal, String mensaje){
         long horas = fechaInicial.until(fechaFinal, ChronoUnit.HOURS);
-        if(horas < HORA_MINIMA) throw new ExcepcionValorInvalido(mensaje);
+        if(horas < HORA_MINIMA){
+            throw new ExcepcionValorInvalido(mensaje);
+        }
     }
 
     private void validarFechaInicialMayorQueActual(LocalDateTime fechaActual, LocalDateTime fechaInicial, String mensaje){
-        if(fechaActual.isAfter(fechaInicial)) throw new ExcepcionValorInvalido(mensaje);
+        if(fechaActual.isAfter(fechaInicial)){
+            throw new ExcepcionValorInvalido(mensaje);
+        }
     }
 
     private LocalDateTime normalizarFecha(LocalDateTime fecha){

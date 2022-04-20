@@ -23,7 +23,9 @@ public class ServicioListarHabitacion {
 
     private void validarExistenciaHabitacionPorId(Long id){
         boolean existe = this.repositorioHabitacion.existePorId(id);
-        if(!existe) throw new ExcepcionSinDatos(HABITACION_NO_ENCONTRADA);
+        if(!existe) {
+            throw new ExcepcionSinDatos(HABITACION_NO_ENCONTRADA);
+        }
     }
 
     public DtoHabitacion obtenerHabitacionPorId(Long id) {
@@ -37,7 +39,9 @@ public class ServicioListarHabitacion {
 
     public void validarHabitacionOcupadaPorId(Long id){
         boolean ocupada = this.repositorioHabitacion.esHabitacionOcupadaPorId(id);
-        if(ocupada) throw new ExcepcionDuplicidad(HABITACION_OCUPADA);
+        if(ocupada){
+            throw new ExcepcionDuplicidad(HABITACION_OCUPADA);
+        }
     }
 
 

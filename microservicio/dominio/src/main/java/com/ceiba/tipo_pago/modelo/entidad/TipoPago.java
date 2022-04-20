@@ -10,8 +10,8 @@ public class TipoPago {
 
     private static final String MENSAJE_NOMBRE_REQUERIDO = "Se debe ingresar el nombre";
     private static final String MENSAJE_TIPO_IMPUESTO_VALIDO = "El porcentaje debe estar entre %s y %s";
-    private static double MINIMO_IMPUESTO = 0.0;
-    private static double MAXIMO_IMPUESTO = 99.9;
+    private static final double MINIMO_IMPUESTO = 0.0;
+    private static final double MAXIMO_IMPUESTO = 99.9;
 
     private Long id;
     private String nombre;

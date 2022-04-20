@@ -24,6 +24,8 @@ public class ServicioListarTipoHabitacion {
 
     private void validarExistenciaTipoHabitacionPorId(Long id){
         boolean existe = this.repositorioTipoHabitacion.existePorId(id);
-        if(!existe) throw new ExcepcionSinDatos(TIPO_HABITACION_NO_ENCONTRADA);
+        if(!existe){
+            throw new ExcepcionSinDatos(TIPO_HABITACION_NO_ENCONTRADA);
+        }
     }
 }

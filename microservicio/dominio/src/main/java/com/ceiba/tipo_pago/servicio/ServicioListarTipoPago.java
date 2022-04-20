@@ -21,7 +21,9 @@ public class ServicioListarTipoPago {
 
     private void validarExistenciaTipoPagoPorId(Long id){
         boolean existe = this.repositorioTipoPago.existePorId(id);
-        if(!existe) throw new ExcepcionSinDatos(TIPO_PAGO_NO_ENCONTRADO);
+        if(!existe){
+            throw new ExcepcionSinDatos(TIPO_PAGO_NO_ENCONTRADO);
+        }
     }
 
     public List<DtoTipoPago> ejecutar(){
