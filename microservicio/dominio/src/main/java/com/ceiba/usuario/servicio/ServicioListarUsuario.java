@@ -5,6 +5,8 @@ import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.puerto.dao.DaoUsuario;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 
+import java.util.List;
+
 public class ServicioListarUsuario {
 
     private final String USUARIO_NO_ENCONTRADO = "El registro del usuario no fue encontrado";
@@ -15,6 +17,10 @@ public class ServicioListarUsuario {
     public ServicioListarUsuario(DaoUsuario daoUsuario, RepositorioUsuario repositorioUsuario) {
         this.daoUsuario = daoUsuario;
         this.repositorioUsuario = repositorioUsuario;
+    }
+
+    public List<DtoUsuario> listar(){
+        return this.daoUsuario.listar();
     }
 
     public DtoUsuario obtenerUsuarioPorId(Long id) {

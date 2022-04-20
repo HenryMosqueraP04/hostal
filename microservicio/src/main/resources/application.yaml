@@ -6,7 +6,7 @@ jasypt:
 server:
    port: 8080
    servlet:
-      context-path: /reservas
+      context-path: /hostal
       session:
          timeout: 21600s
 

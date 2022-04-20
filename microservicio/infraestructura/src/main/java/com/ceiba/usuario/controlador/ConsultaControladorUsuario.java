@@ -12,6 +12,8 @@ import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/usuarios")
 @Api(tags={"Controlador consulta usuario"})
@@ -21,6 +23,12 @@ public class ConsultaControladorUsuario {
 
     public ConsultaControladorUsuario(ManejadorListarUsuario manejadorListarUsuarios) {
         this.manejadorListarUsuarios = manejadorListarUsuarios;
+    }
+
+    @GetMapping
+    @ApiOperation("Listar usuario por id")
+    public List<DtoUsuario> listar() {
+        return this.manejadorListarUsuarios.ejecutar();
     }
 
     @GetMapping("/{id}")

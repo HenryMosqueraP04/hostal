@@ -39,6 +39,19 @@ class ConsultaControladorUsuarioTest {
     }
 
     @Test
+    void deberiaListarLosUsuarios() throws Exception {
+
+        // act - assert
+        mocMvc.perform(get("/usuarios")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isNotEmpty())
+                .andExpect(jsonPath("$[0].id").exists());
+
+    }
+
+
+    @Test
     void deberiaFallarNoEncuentraElUsuarioPorId() throws Exception {
         // arrange
         Long id = 0L;

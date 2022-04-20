@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 
+import java.util.List;
+
 @Component
 public class DaoUsuarioMysql implements DaoUsuario {
 
@@ -16,6 +18,9 @@ public class DaoUsuarioMysql implements DaoUsuario {
 
     @SqlStatement(namespace= "usuario", value="obtenerPorId")
     private static String sqlObtenerPorId;
+
+    @SqlStatement(namespace = "usuario", value = "listar")
+    private static String sqlListar;
 
     public DaoUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -27,5 +32,10 @@ public class DaoUsuarioMysql implements DaoUsuario {
         mapSqlParameterSource.addValue("id", id);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId,mapSqlParameterSource, new MapeoUsuario() );
+    }
+
+    @Override
+    public List<DtoUsuario> listar() {
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoUsuario() );
     }
 }

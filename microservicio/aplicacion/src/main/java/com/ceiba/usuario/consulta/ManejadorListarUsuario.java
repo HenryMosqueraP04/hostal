@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.usuario.modelo.dto.DtoUsuario;
 
+import java.util.List;
+
 @Component
 public class ManejadorListarUsuario {
 
@@ -13,6 +15,10 @@ public class ManejadorListarUsuario {
     public ManejadorListarUsuario(ServicioListarUsuario servicioListarUsuario) {
         this.servicioListarUsuario = servicioListarUsuario;
     }
+
+    public List<DtoUsuario> ejecutar(){
+        return this.servicioListarUsuario.listar();
+    };
 
     public DtoUsuario obtenerUsuarioPorId(Long id) {
         return this.servicioListarUsuario.obtenerUsuarioPorId(id);

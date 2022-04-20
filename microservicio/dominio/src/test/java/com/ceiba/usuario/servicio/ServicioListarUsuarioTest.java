@@ -9,7 +9,12 @@ import com.ceiba.usuario.testdatabuilder.DtoUsuarioTestDataBuilder;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ServicioListarUsuarioTest {
 
@@ -52,6 +57,50 @@ public class ServicioListarUsuarioTest {
         //- assert
         BasePrueba.assertThrows(()-> servicioListarUsuario.obtenerUsuarioPorId(1L), ExcepcionSinDatos.class, exepcionUsuarioNoEncontrado);
         Mockito.verify(repositorioUsuario, Mockito.times(1)).existePorId(Mockito.anyLong());
+    }
+
+    @Test
+    void deberiaListarLosUsuariosLlena() {
+
+        // arrange
+        List<DtoUsuario> usuariosEsperados = Arrays.asList(new DtoUsuarioTestDataBuilder().conId(1L).build());
+
+        DaoUsuario daoUsuario = Mockito.mock(DaoUsuario.class);
+        RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
+
+        Mockito.when(daoUsuario.listar()).thenReturn(usuariosEsperados);
+
+        ServicioListarUsuario servicioListarUsuario = new ServicioListarUsuario(daoUsuario, repositorioUsuario);
+
+        // act
+        List<DtoUsuario> usuariosRespuesta = servicioListarUsuario.listar();
+
+        //- assert
+        assertTrue(!usuariosRespuesta.isEmpty());
+        assertEquals(usuariosEsperados.size(), usuariosRespuesta.size());
+        Mockito.verify(daoUsuario, Mockito.times(1)).listar();
+    }
+
+    @Test
+    void deberiaListarLosUsuariosVacia() {
+
+        // arrange
+        List<DtoUsuario> usuariosEsperados = new ArrayList<>();
+
+        DaoUsuario daoUsuario = Mockito.mock(DaoUsuario.class);
+        RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
+
+        Mockito.when(daoUsuario.listar()).thenReturn(usuariosEsperados);
+
+        ServicioListarUsuario servicioListarUsuario = new ServicioListarUsuario(daoUsuario, repositorioUsuario);
+
+        // act
+        List<DtoUsuario> usuariosRespuesta = servicioListarUsuario.listar();
+
+        //- assert
+        assertTrue(usuariosRespuesta.isEmpty());
+        assertEquals(usuariosEsperados.size(), usuariosRespuesta.size());
+        Mockito.verify(daoUsuario, Mockito.times(1)).listar();
     }
 
 }
