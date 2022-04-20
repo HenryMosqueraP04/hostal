@@ -62,10 +62,7 @@ pipeline{
 				/*sonarqubeMasQualityGates(sonarKey:'co.com.ceiba.adn:hostal.henry.mosquera', 
 				sonarName:'CeibaADN-Hostal(henry.mosquera)', 
 				sonarPathProperties:'./sonar-project.properties')*/
-                withSonarQubeEnv(​'Sonar'​){
-                    echo '------------>Ejecutando sonar<------------'
-                    sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-                }
+                withSonarQubeEnv(​'Sonar'​)
 			}
 		}
 

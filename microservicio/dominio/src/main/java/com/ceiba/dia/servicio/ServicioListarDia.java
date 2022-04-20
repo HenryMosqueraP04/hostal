@@ -14,6 +14,7 @@ public class ServicioListarDia {
     }
 
     public List<DtoDia> ejecutar() {
+
         return this.daoDia.listar();
     }
 
