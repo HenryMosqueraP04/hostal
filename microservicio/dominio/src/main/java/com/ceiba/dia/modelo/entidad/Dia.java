@@ -16,7 +16,6 @@ public class Dia {
 
     private static final String MINIMO_VALOR_POR_HORA = "0";
 
-
     private Long id;
     private String nombre;
     private BigDecimal valorPorHora ;

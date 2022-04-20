@@ -42,7 +42,7 @@ public class ComandoControladorReserva {
 
 	@PutMapping(value="/{id}")
 	@ApiOperation("Actualizar reserva")
-	public void actualizar(@RequestBody ComandoReserva comandoReserva,@PathVariable Long id) {
+	public void actualizar(@RequestBody ComandoReserva comandoReserva, @PathVariable Long id) {
 		comandoReserva.setId(id);
 		manejadorActualizarReserva.ejecutar(comandoReserva);
 	}

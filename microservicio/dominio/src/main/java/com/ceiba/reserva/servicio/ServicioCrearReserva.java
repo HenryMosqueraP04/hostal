@@ -13,16 +13,10 @@ import com.ceiba.tipo_pago.servicio.ServicioListarTipoPago;
 import com.ceiba.usuario.servicio.ServicioListarUsuario;
 
 import java.math.BigDecimal;
-import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 
-public class ServicioCrearReserva {
-
-    private static final int INCREMENTO_HORAS_RESERVA = 1;
-    private static final int FACTOR_DIVISION_PORCENTAJE = 100;
+public class ServicioCrearReserva extends ServicioReserva {
 
     private final RepositorioReserva repositorioReserva;
     private final ServicioListarUsuario servicioListarUsuario;
@@ -44,57 +38,20 @@ public class ServicioCrearReserva {
     public Long ejecutar(Reserva reserva) {
 
         this.servicioListarUsuario.validarExistenciaUsuarioPorId(reserva.getUsuarioId());
-        this.servicioListarHabitacion.validarHabitacionOcupadaPorId(reserva.getHabitacionId());
+        List<DtoDia> dtoDias =this.servicioListarDia.ejecutar();
+        DtoHabitacion dtoHabitacion = this.servicioListarHabitacion.obtenerHabitacionPorId(reserva.getHabitacionId());
+        this.servicioListarHabitacion.validarHabitacionOcupadaPorId(dtoHabitacion.getId());
+        DtoTipoHabitacion dtoTipoHabitacion = this.servicioListarTipoHabitacion.obtenerTipoHabitacionPorId(dtoHabitacion.getTipoHabitacionId());
+        DtoTipoPago dtoTipoPago = this.servicioListarTipoPago.obtenerTipoPagoPorId(reserva.getTipoPagoId());
 
-        this.calcularValorReservaPorHoras(reserva);
-        this.calcularValorReservaPorTipoDeHabitacion(reserva);
-        this.calcularValorReservaPorTipoDePago(reserva);
+        BigDecimal valor = calcularYEstablecerValorReserva(dtoDias,dtoTipoHabitacion,dtoTipoPago,reserva.getFechaInicio(), reserva.getFechaFin());
+
+        System.out.println(valor);
+        reserva.establecerValorReserva(valor);
 
         return this.repositorioReserva.crear(reserva);
     }
 
-    private void calcularValorReservaPorHoras(Reserva reserva) {
 
-        LocalDateTime fechaInicio = reserva.getFechaInicio();
-        LocalDateTime fechaFin = reserva.getFechaFin();
-
-        List<DtoDia> dias = this.servicioListarDia.ejecutar();
-
-        while (fechaInicio.isBefore(fechaFin)) {
-
-            DayOfWeek dia = fechaInicio.getDayOfWeek();
-
-            Optional<DtoDia> optionalDtoDia = dias.stream().filter(d -> d.getNombre().equalsIgnoreCase(dia.name())).findFirst();
-            if (!optionalDtoDia.isEmpty()) {
-                DtoDia dtoDia = optionalDtoDia.get();
-                BigDecimal valorCalculadoPorHorasDelDia = reserva.getValor().add(dtoDia.getValorPorHora());
-                reserva.establecerValorReserva(valorCalculadoPorHorasDelDia);
-            }
-
-            fechaInicio = fechaInicio.plusHours(INCREMENTO_HORAS_RESERVA);
-        }
-
-    }
-
-    private void calcularValorReservaPorTipoDeHabitacion(Reserva reserva) {
-
-        DtoHabitacion dtoHabitacion = this.servicioListarHabitacion.obtenerHabitacionPorId(reserva.getHabitacionId());
-        DtoTipoHabitacion dtoTipoHabitacion = this.servicioListarTipoHabitacion.obtenerTipoHabitacionPorId(dtoHabitacion.getTipoHabitacionId());
-
-        BigDecimal valorCalculadoPorTipoHabitacion = reserva.getValor().add(dtoTipoHabitacion.getValor());
-        reserva.establecerValorReserva(valorCalculadoPorTipoHabitacion);
-
-    }
-
-    private void calcularValorReservaPorTipoDePago(Reserva reserva) {
-
-        DtoTipoPago dtoTipoPago = this.servicioListarTipoPago.obtenerTipoPagoPorId(reserva.getTipoPagoId());
-        BigDecimal porcentajeCalculado = new BigDecimal(Double.toString(dtoTipoPago.getPorcentajeImpuesto()))
-                .divide(new BigDecimal(FACTOR_DIVISION_PORCENTAJE)).multiply(reserva.getValor());
-        BigDecimal valorImpuesto = reserva.getValor().add(porcentajeCalculado);
-
-        reserva.establecerValorReserva(valorImpuesto);
-
-    }
 
 }

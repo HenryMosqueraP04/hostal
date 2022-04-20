@@ -40,7 +40,7 @@ class ComandoControladorReservaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoReserva)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor':2}"));
+                .andExpect(jsonPath("$.valor").exists());
     }
 
     @Test
@@ -55,6 +55,8 @@ class ComandoControladorReservaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoReserva)))
                 .andExpect(status().isOk());
+
+
     }
 
     @Test

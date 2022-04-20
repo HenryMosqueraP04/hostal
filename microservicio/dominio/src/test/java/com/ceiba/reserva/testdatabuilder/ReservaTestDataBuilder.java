@@ -19,7 +19,7 @@ public class ReservaTestDataBuilder {
     public ReservaTestDataBuilder() {
 
         LocalDateTime fechaInicio = LocalDateTime.now();
-        LocalDateTime fechaFin = fechaInicio.plusHours(1);
+        LocalDateTime fechaFin = fechaInicio.plusHours(5);
 
         this.usuarioId = 1L;
         this.habitacionId = 1L;
