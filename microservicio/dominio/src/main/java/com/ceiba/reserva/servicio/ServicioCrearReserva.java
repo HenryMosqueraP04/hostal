@@ -65,8 +65,8 @@ public class ServicioCrearReserva {
             DayOfWeek dia = fechaInicio.getDayOfWeek();
 
             Optional<DtoDia> optionalDtoDia = dias.stream().filter(d -> d.getNombre().equalsIgnoreCase(dia.name())).findFirst();
-
-            if (optionalDtoDia.isPresent()) {
+            boolean existeDia = optionalDtoDia.isPresent();
+            if (existeDia) {
                 DtoDia dtoDia = optionalDtoDia.get();
                 BigDecimal valorCalculadoPorHorasDelDia = reserva.getValor().add(dtoDia.getValorPorHora());
                 reserva.establecerValorReserva(valorCalculadoPorHorasDelDia);
