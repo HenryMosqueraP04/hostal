@@ -38,10 +38,6 @@ pipeline{
                 echo '------------>Checkout desde Git Microservicio<------------'
                 checkout scm
                 
-                sh 'chmod +x ./microservicio/gradlew'
-                sh './microservicio/gradlew clean'
-
-                
                 /*dir("${PROJECT_PATH_BACK}"){
                     sh 'chmod +x ./gradlew'
                     sh './gradlew clean'
