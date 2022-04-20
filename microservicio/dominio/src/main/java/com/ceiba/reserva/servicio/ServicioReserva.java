@@ -27,9 +27,7 @@ public abstract class ServicioReserva {
         BigDecimal valorInicial = new BigDecimal(VALOR_INICIAL_RESERVA);
         BigDecimal valorPorHora = this.calcularValorReservaPorHoras(valorInicial, dtoDias, fechaInicio, fechaFin);
         BigDecimal valorPorTipoDeHabitacion = this.calcularValorReservaPorTipoDeHabitacion(valorPorHora, dtoTipoHabitacion);
-        BigDecimal valorFinalCalculado = this.calcularValorReservaPorTipoDePago(valorPorTipoDeHabitacion, dtoTipoPago);
-
-        return valorFinalCalculado;
+        return this.calcularValorReservaPorTipoDePago(valorPorTipoDeHabitacion, dtoTipoPago);
     }
 
     private BigDecimal calcularValorReservaPorHoras(BigDecimal valor, List<DtoDia> dtoDias, LocalDateTime fechaInicio, LocalDateTime fechaFin) {

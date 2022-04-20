@@ -46,7 +46,6 @@ public class ServicioCrearReserva extends ServicioReserva {
 
         BigDecimal valor = calcularYEstablecerValorReserva(dtoDias,dtoTipoHabitacion,dtoTipoPago,reserva.getFechaInicio(), reserva.getFechaFin());
 
-        System.out.println(valor);
         reserva.establecerValorReserva(valor);
 
         return this.repositorioReserva.crear(reserva);
