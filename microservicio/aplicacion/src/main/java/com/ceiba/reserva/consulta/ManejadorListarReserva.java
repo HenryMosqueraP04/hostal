@@ -15,6 +15,10 @@ public class ManejadorListarReserva {
         this.servicioListarReserva = servicioListarReserva;
     }
 
+    public List<DtoReserva> ejecutar(){
+        return this.servicioListarReserva.listar();
+    }
+
     public List<DtoReserva> listarPorUsuarioId(Long usuarioId) {
         return this.servicioListarReserva.listarPorUsuarioId(usuarioId);
     }

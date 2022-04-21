@@ -34,4 +34,10 @@ public class ConsultaControladorReserva {
     public List<DtoReserva> listarPorUsuarioId(@PathVariable Long usuarioId) {
         return this.manejadorListarReserva.listarPorUsuarioId(usuarioId);
     }
+
+    @GetMapping
+    @ApiOperation("Listar reservas")
+    public List<DtoReserva> listar() {
+        return this.manejadorListarReserva.ejecutar();
+    }
 }

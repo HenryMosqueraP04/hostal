@@ -66,5 +66,17 @@ class ConsultaControladorReservaTest {
 
     }
 
+    @Test
+    void deberiaObtenerLasReservas() throws Exception {
+
+        // act - assert
+        mocMvc.perform(get("/reservas")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isNotEmpty())
+                .andExpect(jsonPath("$[0].id").exists());
+
+    }
+
 
 }

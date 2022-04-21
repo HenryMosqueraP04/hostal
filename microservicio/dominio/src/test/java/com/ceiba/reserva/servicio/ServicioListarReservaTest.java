@@ -41,7 +41,7 @@ public class ServicioListarReservaTest {
     }
 
     @Test
-    void deberiaDevolverUnaListaVaciaDeHabitacionDesocupadas() {
+    void deberiaDevolverUnaListaVaciaDeReservasPorUsuarioId() {
 
         // arrange
         List<DtoReserva> reservasEsperadas = new ArrayList<>();
@@ -107,6 +107,51 @@ public class ServicioListarReservaTest {
         Mockito.verify(repositorioReserva, Mockito.times(1)).existePorId(Mockito.anyLong());
         Mockito.verify(daoReserva, Mockito.times(1)).obtenerPorId(Mockito.anyLong());
     }
+
+
+    @Test
+    void deberiaDevolverUnaListaVaciaDeReservas() {
+
+        // arrange
+        List<DtoReserva> reservasEsperadas = new ArrayList<>();
+
+        DaoReserva daoReserva = Mockito.mock(DaoReserva.class);
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+
+        Mockito.when(daoReserva.listar()).thenReturn(reservasEsperadas);
+
+        ServicioListarReserva servicioListarReserva = new ServicioListarReserva(daoReserva,repositorioReserva);
+
+        // act
+        List<DtoReserva> reservasRespuesta = servicioListarReserva.listar();
+
+        //- assert
+        assertTrue(reservasRespuesta.isEmpty());
+        Mockito.verify(daoReserva, Mockito.times(1)).listar();
+    }
+
+    @Test
+    void deberiaDevolverUnaListaDeReservas() {
+
+        // arrange
+        List<DtoReserva> reservasEsperadas = Arrays.asList(new DtoReservaTestDataBuilder().build());
+
+        DaoReserva daoReserva = Mockito.mock(DaoReserva.class);
+        RepositorioReserva repositorioReserva = Mockito.mock(RepositorioReserva.class);
+
+        Mockito.when(daoReserva.listar()).thenReturn(reservasEsperadas);
+
+        ServicioListarReserva servicioListarReserva = new ServicioListarReserva(daoReserva,repositorioReserva);
+
+        // act
+        List<DtoReserva> reservasRespuesta = servicioListarReserva.listar();
+
+        //- assert
+        assertTrue(!reservasRespuesta.isEmpty());
+        Mockito.verify(daoReserva, Mockito.times(1)).listar();
+    }
+
+
 
 
 }
