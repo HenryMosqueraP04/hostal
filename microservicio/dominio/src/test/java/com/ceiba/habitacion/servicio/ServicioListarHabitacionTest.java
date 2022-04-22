@@ -10,6 +10,7 @@ import com.ceiba.habitacion.testdatabuilder.DtoHabitacionTestDataBuilder;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,37 +59,41 @@ public class ServicioListarHabitacionTest {
     }
 
     @Test
-    void deberiaFallarLaHabitacionOcupadaPorId(){
+    void deberiaFallarLaHabitacionOcupada(){
 
         // arrange
         final String expecionHabitacionOcupada = "La habitación se encuentra ocupada";
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime fin = ahora.plusHours(1);
         DaoHabitacion daoHabitacion = Mockito.mock(DaoHabitacion.class);
         RepositorioHabitacion repositorioHabitacion = Mockito.mock(RepositorioHabitacion.class);
-        Mockito.when(repositorioHabitacion.esHabitacionOcupadaPorId(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(repositorioHabitacion.esHabitacionOcupada(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(true);
 
         ServicioListarHabitacion servicioListarHabitacion = new ServicioListarHabitacion(daoHabitacion, repositorioHabitacion);
 
         //- assert
-        BasePrueba.assertThrows(()-> servicioListarHabitacion.validarHabitacionOcupadaPorId(1L), ExcepcionDuplicidad.class, expecionHabitacionOcupada);
-        Mockito.verify(repositorioHabitacion, Mockito.times(1)).esHabitacionOcupadaPorId(Mockito.anyLong());
+        BasePrueba.assertThrows(()-> servicioListarHabitacion.validarHabitacionOcupada(1L, ahora, fin), ExcepcionDuplicidad.class, expecionHabitacionOcupada);
+        Mockito.verify(repositorioHabitacion, Mockito.times(1)).esHabitacionOcupada(Mockito.anyLong(),Mockito.any(), Mockito.any());
     }
 
     @Test
-    void deberiaFuncionarHabitacionNoOcupadaPorId(){
+    void deberiaFuncionarHabitacionNoOcupada(){
 
         // arrange
         final String expecionHabitacionOcupada = "La habitación se encuentra ocupada";
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime fin = ahora.plusHours(1);
         DaoHabitacion daoHabitacion = Mockito.mock(DaoHabitacion.class);
         RepositorioHabitacion repositorioHabitacion = Mockito.mock(RepositorioHabitacion.class);
-        Mockito.when(repositorioHabitacion.esHabitacionOcupadaPorId(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioHabitacion.esHabitacionOcupada(Mockito.anyLong(), Mockito.any(), Mockito.any())).thenReturn(false);
 
         ServicioListarHabitacion servicioListarHabitacion = new ServicioListarHabitacion(daoHabitacion, repositorioHabitacion);
 
         //act
-        servicioListarHabitacion.validarHabitacionOcupadaPorId(1L);
+        servicioListarHabitacion.validarHabitacionOcupada(1L, ahora, fin);
 
         //asser
-        Mockito.verify(repositorioHabitacion, Mockito.times(1)).esHabitacionOcupadaPorId(Mockito.anyLong());
+        Mockito.verify(repositorioHabitacion, Mockito.times(1)).esHabitacionOcupada(Mockito.anyLong(),Mockito.any(), Mockito.any());
     }
 
     @Test

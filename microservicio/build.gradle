@@ -34,6 +34,7 @@ allprojects {
 	project.ext.mockitoinline = ['org.mockito:mockito-inline:3.11.2']
 	project.ext.mockitojupiter = ['org.mockito:mockito-junit-jupiter:3.11.2']
 	project.ext.lombok = ["org.projectlombok:lombok:1.18.20"]
+	project.ext.jacksondataformat = ["com.fasterxml.jackson.dataformat:jackson-dataformat-xml"]
 	
 	project.ext.springboottest = ["org.springframework.boot:spring-boot-starter-test:${springBootVersion}"]
 	project.ext.springbootweb = ["org.springframework.boot:spring-boot-starter-web:${springBootVersion}"]
@@ -88,6 +89,7 @@ dependencies {
     	compile.exclude module: 'spring-boot-starter-tomcat'
 	}
 
+	implementation project.ext.jacksondataformat
 	implementation project.ext.springbootweb
 	runtimeOnly project.ext.springdevtools
 	

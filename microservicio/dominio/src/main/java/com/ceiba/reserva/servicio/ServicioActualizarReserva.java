@@ -44,7 +44,7 @@ public class ServicioActualizarReserva extends ServicioReserva {
 
         List<DtoDia> dtoDias =this.servicioListarDia.ejecutar();
         DtoHabitacion dtoHabitacion = this.servicioListarHabitacion.obtenerHabitacionPorId(reserva.getHabitacionId());
-        this.servicioListarHabitacion.validarHabitacionOcupadaPorId(dtoHabitacion.getId());
+        this.servicioListarHabitacion.validarHabitacionOcupada(dtoHabitacion.getId(), reserva.getFechaInicio(), reserva.getFechaFin());
         DtoTipoHabitacion dtoTipoHabitacion = this.servicioListarTipoHabitacion.obtenerTipoHabitacionPorId(dtoHabitacion.getTipoHabitacionId());
         DtoTipoPago dtoTipoPago = this.servicioListarTipoPago.obtenerTipoPagoPorId(reserva.getTipoPagoId());
         BigDecimal valor = calcularYEstablecerValorReserva(dtoDias,dtoTipoHabitacion,dtoTipoPago,reserva.getFechaInicio(), reserva.getFechaFin());

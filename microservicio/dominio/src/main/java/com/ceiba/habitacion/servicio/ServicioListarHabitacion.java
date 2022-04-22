@@ -6,6 +6,7 @@ import com.ceiba.habitacion.modelo.dto.DtoHabitacion;
 import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ServicioListarHabitacion {
@@ -41,8 +42,8 @@ public class ServicioListarHabitacion {
         return this.daoHabitacion.obtenerHabitacionDisponibles();
     }
 
-    public void validarHabitacionOcupadaPorId(Long id){
-        boolean ocupada = this.repositorioHabitacion.esHabitacionOcupadaPorId(id);
+    public void validarHabitacionOcupada(Long id, LocalDateTime fechaInicio, LocalDateTime fechaFin){
+        boolean ocupada = this.repositorioHabitacion.esHabitacionOcupada(id, fechaInicio, fechaFin);
         if(ocupada){
             throw new ExcepcionDuplicidad(HABITACION_OCUPADA);
         }

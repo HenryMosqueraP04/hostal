@@ -6,6 +6,8 @@ import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class RepositorioHabitacionMysql implements RepositorioHabitacion {
 
@@ -14,8 +16,8 @@ public class RepositorioHabitacionMysql implements RepositorioHabitacion {
     @SqlStatement(namespace = "habitacion", value = "existePorId")
     private static String sqlExistePorId;
 
-    @SqlStatement(namespace = "habitacion", value = "esHabitacionOcupadaPorId")
-    private static String sqlEsHabitacionOcupadaPorId;
+    @SqlStatement(namespace = "habitacion", value = "esHabitacionOcupada")
+    private static String sqlEsHabitacionOcupada;
 
     public RepositorioHabitacionMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -29,9 +31,11 @@ public class RepositorioHabitacionMysql implements RepositorioHabitacion {
     }
 
     @Override
-    public boolean esHabitacionOcupadaPorId(Long id) {
+    public boolean esHabitacionOcupada(Long id, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         mapSqlParameterSource.addValue("id",id);
-        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEsHabitacionOcupadaPorId,mapSqlParameterSource, Boolean.class );
+        mapSqlParameterSource.addValue("fechaInicio",fechaInicio);
+        mapSqlParameterSource.addValue("fechaFin",fechaFin);
+        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlEsHabitacionOcupada,mapSqlParameterSource, Boolean.class );
     }
 }

@@ -78,5 +78,16 @@ class ConsultaControladorReservaTest {
 
     }
 
+    @Test
+    void deberiaObtenerElTcrm() throws Exception {
+
+        // act - assert
+        mocMvc.perform(get("/reservas/tcrm")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").exists());
+
+    }
+
 
 }
