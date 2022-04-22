@@ -1,8 +1,10 @@
 package com.ceiba.reserva.controlador;
 
 
+import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import com.ceiba.reserva.consulta.ManejadorListarReserva;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -52,7 +54,7 @@ public class ConsultaControladorReserva {
     }
 
     @GetMapping("/tcrm")
-    public ResponseEntity<String> obtenerTCRM() throws IOException {
+    public ResponseEntity<String> obtenerTCRM() throws Exception {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
@@ -78,18 +80,20 @@ public class ConsultaControladorReserva {
         RestTemplate restTemplate = new RestTemplate();
         final Optional<String> xmlEnTexto = Optional.of(restTemplate.postForEntity(url, request, String.class).getBody());
 
-        return ResponseEntity.ok(this.getRespuestaXmlEnTexto(xmlEnTexto));
+        return ResponseEntity.ok(this.obtenerTCRM(xmlEnTexto));
     }
 
-    private String getRespuestaXmlEnTexto(Optional<String> xml) throws IOException {
+    private String obtenerTCRM(Optional<String> xml) throws Exception {
 
-        if (xml.isPresent()) {
-            XmlMapper xmlMapper = new XmlMapper();
-            JsonNode jsonNode = xmlMapper.readTree(xml.get().getBytes());
-            ObjectMapper objMapper = new ObjectMapper();
-            return objMapper.writeValueAsString(jsonNode);
+        if (!xml.isPresent()) {
+            throw new ExcepcionTecnica("TCMR no encontrado");
         }
 
-        return "0";
+        XmlMapper xmlMapper = new XmlMapper();
+        JsonNode jsonNode = xmlMapper.readTree(xml.get().getBytes());
+        ObjectMapper objMapper = new ObjectMapper();
+        return objMapper.writeValueAsString(jsonNode);
+
     }
+
 }

@@ -22,6 +22,7 @@ public class ManejadorListarReserva {
     public List<DtoReserva> listarPorUsuarioId(Long usuarioId) {
         return this.servicioListarReserva.listarPorUsuarioId(usuarioId);
     }
+
     public DtoReserva obtenerPorId(Long id) {
         return this.servicioListarReserva.obtenerPorId(id);
     }
