@@ -7,4 +7,5 @@ import java.util.List;
 public interface DaoHabitacion {
     DtoHabitacion obtenerPorId(Long id);
     List<DtoHabitacion> obtenerHabitacionDisponibles();
+    List<DtoHabitacion> listar();
 }

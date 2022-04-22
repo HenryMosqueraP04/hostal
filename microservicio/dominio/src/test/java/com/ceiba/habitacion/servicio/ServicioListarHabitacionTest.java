@@ -135,6 +135,48 @@ public class ServicioListarHabitacionTest {
         Mockito.verify(daoHabitacion, Mockito.times(1)).obtenerHabitacionDisponibles();
     }
 
+    @Test
+    void deberiaDevolverUnaListaVaciaDeHabitacion() {
+
+        // arrange
+        List<DtoHabitacion> habitacionesEsperado = new ArrayList<>();
+
+        DaoHabitacion daoHabitacion = Mockito.mock(DaoHabitacion.class);
+        RepositorioHabitacion repositorioHabitacion = Mockito.mock(RepositorioHabitacion.class);
+
+        Mockito.when(daoHabitacion.listar()).thenReturn(habitacionesEsperado);
+
+        ServicioListarHabitacion servicioListarHabitacion = new ServicioListarHabitacion(daoHabitacion, repositorioHabitacion);
+
+        // act
+        List<DtoHabitacion> habitacionesRespuesta = servicioListarHabitacion.listar();
+
+        //- assert
+        assertTrue(habitacionesRespuesta.isEmpty());
+        Mockito.verify(daoHabitacion, Mockito.times(1)).listar();
+    }
+
+    @Test
+    void deberiaDevolverUnaListaLlenaDeHabitacion() {
+
+        // arrange
+        List<DtoHabitacion> habitacionesEsperado = Arrays.asList(new DtoHabitacionTestDataBuilder().build());
+
+        DaoHabitacion daoHabitacion = Mockito.mock(DaoHabitacion.class);
+        RepositorioHabitacion repositorioHabitacion = Mockito.mock(RepositorioHabitacion.class);
+
+        Mockito.when(daoHabitacion.listar()).thenReturn(habitacionesEsperado);
+
+        ServicioListarHabitacion servicioListarHabitacion = new ServicioListarHabitacion(daoHabitacion, repositorioHabitacion);
+
+        // act
+        List<DtoHabitacion> habitacionesRespuesta = servicioListarHabitacion.listar();
+
+        //- assert
+        assertTrue(!habitacionesRespuesta.isEmpty());
+        Mockito.verify(daoHabitacion, Mockito.times(1)).listar();
+    }
+
 
 
 

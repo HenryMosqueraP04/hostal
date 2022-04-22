@@ -25,6 +25,17 @@ public class ConsultaControladorHabitacionTest {
     private MockMvc mocMvc;
 
     @Test
+    void deberiaObtenerElListadoDeHabitacionesDesocupadasLleno() throws Exception {
+
+        // act - assert
+        mocMvc.perform(get("/habitaciones/disponibles")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isNotEmpty());
+
+    }
+
+    @Test
     void deberiaObtenerElListadoDeHabitacionesLleno() throws Exception {
 
         // act - assert

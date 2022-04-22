@@ -33,6 +33,10 @@ public class ServicioListarHabitacion {
         return this.daoHabitacion.obtenerPorId(id);
     }
 
+    public List<DtoHabitacion> listar(){
+        return this.daoHabitacion.listar();
+    }
+
     public List<DtoHabitacion> listarHabitacionesDisponibles(){
         return this.daoHabitacion.obtenerHabitacionDisponibles();
     }

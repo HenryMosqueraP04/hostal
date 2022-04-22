@@ -24,10 +24,16 @@ public class ConsultaControladorHabitacion {
         this.manejadorListarHabitacion = manejadorListarHabitacion;
     }
 
-    @GetMapping
+    @GetMapping("/disponibles")
     @ApiOperation("Listar habitaciones disponibles")
     public List<DtoHabitacion> listarHabitacionesDisponibles() {
         return this.manejadorListarHabitacion.listarHabitacionesDisponibles();
+    }
+
+    @GetMapping
+    @ApiOperation("Listar habitaciones")
+    public List<DtoHabitacion> listar() {
+        return this.manejadorListarHabitacion.ejecutar();
     }
 
 }

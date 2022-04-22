@@ -15,6 +15,10 @@ public class ManejadorListarHabitacion {
         this.servicioListarHabitacion = servicioListarHabitacion;
     }
 
+    public List<DtoHabitacion> ejecutar() {
+        return this.servicioListarHabitacion.listar();
+    }
+
     public List<DtoHabitacion> listarHabitacionesDisponibles() {
         return this.servicioListarHabitacion.listarHabitacionesDisponibles();
     }

@@ -20,6 +20,9 @@ public class DaoHabitacionMysql implements DaoHabitacion {
     @SqlStatement(namespace = "habitacion", value = "obtenerHabitacionDisponibles")
     private static String sqlObtenerHabitacionDisponibles;
 
+    @SqlStatement(namespace = "habitacion", value = "listar")
+    private static String sqlListar;
+
     public DaoHabitacionMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -34,5 +37,10 @@ public class DaoHabitacionMysql implements DaoHabitacion {
     @Override
     public List<DtoHabitacion> obtenerHabitacionDisponibles() {
         return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlObtenerHabitacionDisponibles,new MapeoHabitacion());
+    }
+
+    @Override
+    public List<DtoHabitacion> listar() {
+        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar,new MapeoHabitacion());
     }
 }
