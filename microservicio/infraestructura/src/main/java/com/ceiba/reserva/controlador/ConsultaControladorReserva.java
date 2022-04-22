@@ -25,7 +25,7 @@ import java.util.List;
 public class ConsultaControladorReserva {
 
     private final ManejadorListarReserva manejadorListarReserva;
-    private final Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger logger = LoggerFactory.getLogger(ConsultaControladorReserva.class);
 
     public ConsultaControladorReserva(ManejadorListarReserva manejadorListarReserva) {
         this.manejadorListarReserva = manejadorListarReserva;
@@ -50,7 +50,7 @@ public class ConsultaControladorReserva {
     }
 
     @GetMapping("/tcrm")
-    public ResponseEntity<?> obtenerTCRM() {
+    public ResponseEntity<String> obtenerTCRM() {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
@@ -58,7 +58,7 @@ public class ConsultaControladorReserva {
         final String url = "https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService";
         final LocalDate fecha = LocalDate.now();
 
-        StringBuffer body = new StringBuffer();
+        StringBuilder body = new StringBuilder();
         body.append("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" \n");
         body.append("xmlns:act=\"http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/\"> \n");
         body.append("<soapenv:Header/>\n");
@@ -90,7 +90,7 @@ public class ConsultaControladorReserva {
             ObjectMapper objMapper = new ObjectMapper();
             res = objMapper.writeValueAsString(jsonNode);
         } catch (IOException ex) {
-            logger.warn(ex.getMessage());
+            logger.info(ex.getMessage());
         }
         return res;
     }
