@@ -131,12 +131,12 @@ public class ReservaTest {
     void deberiaFallarLaFechaInicioEsMenorQueLaActual() {
 
         // Arrange
-        LocalDateTime inicio = LocalDateTime.now().minusMinutes(1);
-
+        LocalDateTime fechaInicio = LocalDateTime.now();
+        fechaInicio = fechaInicio.minusHours(1);
         final String excepcion = "La fecha de inicio tiene que ser mayor a la actual";
 
         //act
-        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conFechaInicio(inicio);
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conFechaInicio(fechaInicio);
 
         BasePrueba.assertThrows(() -> {reservaTestDataBuilder.build(); },  ExcepcionValorInvalido.class,
                 excepcion);
