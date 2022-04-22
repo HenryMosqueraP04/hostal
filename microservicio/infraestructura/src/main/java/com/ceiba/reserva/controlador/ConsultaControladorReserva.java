@@ -83,7 +83,7 @@ public class ConsultaControladorReserva {
         return ResponseEntity.ok(this.obtenerTCRM(xmlEnTexto));
     }
 
-    private String obtenerTCRM(Optional<String> xml) throws Exception {
+    private String obtenerTCRM(Optional<String> xml) throws IOException {
 
         if (!xml.isPresent()) {
             throw new ExcepcionTecnica("TCMR no encontrado");
