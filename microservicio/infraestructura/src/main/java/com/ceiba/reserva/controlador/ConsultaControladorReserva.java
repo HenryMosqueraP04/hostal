@@ -54,7 +54,7 @@ public class ConsultaControladorReserva {
     }
 
     @GetMapping("/tcrm")
-    public ResponseEntity<String> obtenerTCRM() throws Exception {
+    public ResponseEntity<String> obtenerTCRM() throws IOException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
