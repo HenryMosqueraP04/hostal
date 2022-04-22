@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -23,6 +25,7 @@ import java.util.List;
 public class ConsultaControladorReserva {
 
     private final ManejadorListarReserva manejadorListarReserva;
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public ConsultaControladorReserva(ManejadorListarReserva manejadorListarReserva) {
         this.manejadorListarReserva = manejadorListarReserva;
@@ -87,7 +90,7 @@ public class ConsultaControladorReserva {
             ObjectMapper objMapper = new ObjectMapper();
             res = objMapper.writeValueAsString(jsonNode);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            logger.warn(ex.getMessage());
         }
         return res;
     }
