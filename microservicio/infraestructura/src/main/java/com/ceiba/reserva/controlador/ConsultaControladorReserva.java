@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/reservas")
@@ -25,7 +26,7 @@ import java.util.List;
 public class ConsultaControladorReserva {
 
     private final ManejadorListarReserva manejadorListarReserva;
-    private static final Logger logger = LoggerFactory.getLogger(ConsultaControladorReserva.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConsultaControladorReserva.class);
 
     public ConsultaControladorReserva(ManejadorListarReserva manejadorListarReserva) {
         this.manejadorListarReserva = manejadorListarReserva;
@@ -74,24 +75,26 @@ public class ConsultaControladorReserva {
         HttpEntity<String> request = new HttpEntity<>(body.toString(), headers);
 
         RestTemplate restTemplate = new RestTemplate();
-        final String xmlEnTexto = restTemplate.postForEntity(url, request, String.class).getBody();
+        final Optional<String> xmlEnTexto = Optional.of(restTemplate.postForEntity(url, request, String.class).getBody());
 
         return ResponseEntity.ok(this.getRespuestaXmlEnTexto(xmlEnTexto));
     }
 
-    private String getRespuestaXmlEnTexto(String xml) {
+    private String getRespuestaXmlEnTexto(Optional<String> xml) {
 
-        String res = "";
-        XmlMapper xmlMapper = new XmlMapper();
-        JsonNode jsonNode;
+        if(xml.isPresent()){
+            XmlMapper xmlMapper = new XmlMapper();
+            JsonNode jsonNode;
 
-        try {
-            jsonNode = xmlMapper.readTree(xml.getBytes());
-            ObjectMapper objMapper = new ObjectMapper();
-            res = objMapper.writeValueAsString(jsonNode);
-        } catch (IOException ex) {
-            logger.info(ex.getMessage());
+            try {
+                jsonNode = xmlMapper.readTree(xml.get().getBytes());
+                ObjectMapper objMapper = new ObjectMapper();
+                return objMapper.writeValueAsString(jsonNode);
+            } catch (IOException ex) {
+                LOGGER.error(ex.getMessage(), ex);
+            }
         }
-        return res;
+
+        return "";
     }
 }
