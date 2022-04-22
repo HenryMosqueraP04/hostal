@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/habitaciones")
 @Api(tags={"Controlador consulta habitaciones"})
-@CrossOrigin
+@CrossOrigin("http://localhost:4200")
 public class ConsultaControladorHabitacion {
 
     private final ManejadorListarHabitacion manejadorListarHabitacion;

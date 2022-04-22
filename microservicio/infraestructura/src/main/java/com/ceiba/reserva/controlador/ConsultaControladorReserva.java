@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/reservas")
 @Api(tags={"Controlador consulta reserva"})
-@CrossOrigin
+@CrossOrigin("http://localhost:4200")
 public class ConsultaControladorReserva {
 
     private final ManejadorListarReserva manejadorListarReserva;

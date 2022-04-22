@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tipo-pagos")
 @Api(tags={"Controlador consulta tipo de pagos"})
-@CrossOrigin
+@CrossOrigin("http://localhost:4200")
 public class ConsultaControladorTipoPago {
 
     private final ManejadorListarTipoPago manejadorListarTipoPago;
