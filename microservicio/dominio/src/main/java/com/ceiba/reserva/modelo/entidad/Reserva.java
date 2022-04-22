@@ -77,7 +77,14 @@ public class Reserva {
     }
 
     private void validarFechaInicialMayorQueActual(LocalDateTime fechaActual, LocalDateTime fechaInicial, String mensaje){
-        fechaActual = fechaActual.minusMinutes(5);
+
+        long horas = fechaActual.until(fechaInicial, ChronoUnit.HOURS);
+
+        if(horas == 0){
+            long minutos = fechaInicial.until(fechaActual, ChronoUnit.MINUTES);
+            fechaActual = fechaActual.minusMinutes(minutos);
+        }
+
         if(fechaActual.isAfter(fechaInicial)){
             throw new ExcepcionValorInvalido(mensaje);
         }

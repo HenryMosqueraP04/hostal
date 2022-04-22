@@ -36,7 +36,7 @@ public class ReservaTest {
         assertEquals(1L, reserva.getHabitacionId());
         assertEquals(1L, reserva.getTipoPagoId());
         assertEquals(valor.toPlainString(), reserva.getValor().toPlainString());
-        assertEquals(true, reserva.isEstado());
+        assertTrue(reserva.isEstado());
         assertTrue(inicio.isEqual(reserva.getFechaInicio()));
         assertTrue(fin.isEqual(reserva.getFechaFin()));
     }
