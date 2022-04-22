@@ -51,7 +51,7 @@ public class ConsultaControladorReserva {
     }
 
     @GetMapping("/tcrm")
-    public ResponseEntity<String> obtenerTCRM() {
+    public ResponseEntity<String> obtenerTCRM() throws IOException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_XML);
@@ -80,21 +80,15 @@ public class ConsultaControladorReserva {
         return ResponseEntity.ok(this.getRespuestaXmlEnTexto(xmlEnTexto));
     }
 
-    private String getRespuestaXmlEnTexto(Optional<String> xml) {
+    private String getRespuestaXmlEnTexto(Optional<String> xml) throws IOException {
 
-        if(xml.isPresent()){
+        if (xml.isPresent()) {
             XmlMapper xmlMapper = new XmlMapper();
-            JsonNode jsonNode;
-
-            try {
-                jsonNode = xmlMapper.readTree(xml.get().getBytes());
-                ObjectMapper objMapper = new ObjectMapper();
-                return objMapper.writeValueAsString(jsonNode);
-            } catch (IOException ex) {
-                LOGGER.error(ex.getMessage(), ex);
-            }
+            JsonNode jsonNode = xmlMapper.readTree(xml.get().getBytes());
+            ObjectMapper objMapper = new ObjectMapper();
+            return objMapper.writeValueAsString(jsonNode);
         }
 
-        return "";
+        return "0";
     }
 }
