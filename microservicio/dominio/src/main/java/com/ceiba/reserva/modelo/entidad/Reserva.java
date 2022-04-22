@@ -26,6 +26,7 @@ public class Reserva {
 
     private static final String MINIMO_VALOR_RESERVA= "0";
     private static final int HORA_MINIMA= 1;
+    private static final int HORA_VALIDACION = 1;
 
     private Long id;
     private Long usuarioId;
@@ -76,6 +77,7 @@ public class Reserva {
     }
 
     private void validarFechaInicialMayorQueActual(LocalDateTime fechaActual, LocalDateTime fechaInicial, String mensaje){
+        fechaActual = fechaActual.minusHours(1);
         if(fechaActual.isAfter(fechaInicial)){
             throw new ExcepcionValorInvalido(mensaje);
         }

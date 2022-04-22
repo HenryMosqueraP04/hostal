@@ -1,4 +1,6 @@
-SELECT hab.id, hab.nombre, hab.tipo_habitacion_id, hab.estado
-FROM habitacion hab
-INNER JOIN reserva res ON hab.id = res.habitacion_id
-WHERE NOW() NOT BETWEEN res.fecha_inicio AND res.fecha_fin
+SELECT id, nombre, tipo_habitacion_id, estado
+FROM habitacion
+WHERE id NOT IN(
+SELECT habitacion_id FROM reserva WHERE
+NOW() BETWEEN fecha_inicio AND fecha_fin
+)
